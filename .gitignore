@@ -1,0 +1,60 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/app-client/node_modules
+/app-client/.pnp
+/app-client/.pnp.js
+/app-client/.yarn/install-state.gz
+/app-client/package-lock.json
+/app-company/node_modules
+/app-company/.pnp
+/app-company/.pnp.js
+/app-company/.yarn/install-state.gz
+/app-company/package-lock.json
+
+# testing
+/app-client/coverage
+/app-company/coverage
+
+# next.js
+/app-client/.next/
+/app-client/out/
+/app-company/.next/
+/app-company/out/
+
+# # production
+# /build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+typescript
+# *.tsbuildinfo
+/app-client/next-env.d.ts
+/app-client/.env
+/app-company/next-env.d.ts
+/app-company/.env
+
+# Python related files that need to be exluded
+/venv/
+/requirements-app-init.txt
+/app-init/app/__pycache__/
+/app-init/app/start.sh
+/.flake8
+/model_circs_srs_settings_cal_n_keys.tar.gz
+
+# PineGrow related test files and folders
+/pinegrow/
+
+# Other random file(s) and / or folder(s) that need to be excluded
+.env
+/app-init/data/20*

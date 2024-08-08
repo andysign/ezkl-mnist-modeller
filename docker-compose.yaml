@@ -1,0 +1,45 @@
+# docker-compose down --remove-orphans -v && docker-compose up --build -d
+services:
+
+    zk-modellerjupyter:
+        stdin_open: true
+        tty: true
+        container_name: zk-modellerjupyter
+        hostname: zk-modellerjupyter
+        build:
+            context: .
+            dockerfile: modellerjupyter.dockerfile
+        ports:
+            - 8888:8888
+        volumes:
+            - './data/mnist-train-n-test.tar.gz:/jupyter/mnist-train-n-test.tar.gz'
+            - './data/models-pkl.tar.gz:/jupyter/models-pkl.tar.gz'
+        image: zk-demo-modellerjupyter
+        networks:
+            net:
+                ipv4_address: 172.31.0.100
+
+    zk-modellerauto:
+        stdin_open: true
+        tty: true
+        container_name: zk-modellerauto
+        hostname: zk-modellerauto
+        build:
+            context: .
+            dockerfile: modellerauto.dockerfile
+        ports:
+            - 8081:8081
+        volumes:
+            - './data/mnist-train-n-test.tar.gz:/app/mnist-train-n-test.tar.gz'
+            - './data/models-pkl.tar.gz:/app/models-pkl.tar.gz'
+        image: zk-demo-modellerauto
+        networks:
+            net:
+                ipv4_address: 172.31.0.101
+
+networks:
+    net:
+        ipam:
+            config: [ { subnet: '172.31.0.0/24' } ]
+
+# watch -ct docker-compose logs zk-modellerjupyter zk-modellerauto --tail 10
